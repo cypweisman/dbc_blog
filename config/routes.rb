@@ -5,10 +5,14 @@ Blog::Application.routes.draw do
  # get "/posts/:id" => "posts#show"
  # post "/posts" => "posts#create"
 
+  get "/" => "posts#index"
+
   resources :posts, only: [:index, :show]
   #resources :users, only [:show, :new, :create]
 
-  resources :users do
+  resources :users, only: [:new, :create] do
     resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
   end
+
+  resources :sessions, only: [:new, :create, :destroy]
 end

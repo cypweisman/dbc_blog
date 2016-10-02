@@ -1,7 +1,19 @@
-<%= link_to("register", new_user_path) %>
+<% if !logged_in? %>
+  <%= link_to("register", new_user_path) %>
+  <%= link_to("login", new_session_path) %>
+<% end %>
+
+<% if logged_in? %>
+  <%= form_tag(session_path(session[:user_id]), method: "delete") do %>
+  <%= submit_tag("logout") %>
+  <% end %>
+<% end %>
 
 <h1>All Posts</h1>
-<%= link_to("create post", new_user_post_path(session[:user_id])) %>
+
+<% if logged_in? %>
+  <%= link_to("create post", new_user_post_path(session[:user_id])) %>
+<% end %>
 
 
 <% @posts.each do |post| %>
