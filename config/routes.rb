@@ -9,6 +9,6 @@ Blog::Application.routes.draw do
   #resources :users, only [:show, :new, :create]
 
   resources :users do
-    resources :posts, only: [:index, :new, :create]
+    resources :posts, only: [:index, :new, :create, :edit, :update, :destroy]
   end
 end

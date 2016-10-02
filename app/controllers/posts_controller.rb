@@ -25,8 +25,37 @@ class PostsController < ApplicationController
     #end
   end
 
+  #GET /posts/id
+  def edit
+    @post = Post.find(params[:id])
+  end
+
+  #PUT /post
+  def update
+    @post = Post.find(params[:id])
+    @post.assign_attributes(title: params[:title], body: params[:body])
+
+
+    #respond_to do |format|
+      if @post.save
+        redirect_to post_path(@post)
+        # format.json {render :show, status: :create}
+      else
+        #format.html {render :new}
+        render "edit"
+      end
+    #end
+  end
+
   #GET /posts/:id
   def show
     @post = Post.find(params[:id])
+  end
+
+  #DELETE /posts/:id
+  def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 end
