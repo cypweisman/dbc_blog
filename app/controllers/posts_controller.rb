@@ -4,13 +4,29 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
-  #POST /post
-  def create
-
+  #GET /posts/new
+  def new
+    @post = Post.new
   end
 
-  #GET /tweets/:id
+  #POST /post
+  def create
+    @post = Post.new(title: params[:title], body: params[:body])
+    @post.user_id = session[:user_id]
+
+    #respond_to do |format|
+      if @post.save
+        redirect_to post_path(@post)
+        # format.json {render :show, status: :create}
+      else
+        #format.html {render :new}
+        render "new"
+      end
+    #end
+  end
+
+  #GET /posts/:id
   def show
-    @tweet = Tweet.find(params[:id])
+    @post = Post.find(params[:id])
   end
 end
