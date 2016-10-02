@@ -16,6 +16,7 @@ class UsersController < ApplicationController
         # format.json {render :show, status: :create}
       else
         #format.html {render :new}
+        @errors = @user.errors.full_messages
         render "new"
       end
     #end

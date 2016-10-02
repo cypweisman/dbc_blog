@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  #DELETE /sessions/:id
 
   def new
     #@user = User.new
@@ -12,8 +11,7 @@ class SessionsController < ApplicationController
       session[:user_id] = user.id
       redirect_to posts_path
     else
-    #@errors = ["Invalid data"]
-    #create a partial
+      @errors = ["Invalid data"]
       render "new"
     end
   end

@@ -1,13 +1,13 @@
-<%= form_for(@post) do |f| %>
-  <% if @post.errors.any? %>
+
+  <% if @errors %>
     <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(@errors.count, "error") %> prohibited this from being saved:</h2>
 
       <ul>
-      <% @post.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+      <% @errors.each do |error| %>
+        <li><%= error %></li>
       <% end %>
       </ul>
     </div>
-  <% end %>
+
 <% end %>
