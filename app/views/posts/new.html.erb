@@ -1,5 +1,9 @@
 <h1>Create Post</h1>
 
+<% if @post.errors.any? %>
+  <%= render '/errors' %>
+<% end %>
+
 <%= form_tag(user_posts_path, method: "post") do %>
   <%= label_tag(:title, "Title:") %>
   <%= text_field_tag(:title) %>

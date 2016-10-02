@@ -7,7 +7,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <h1>Will this appear?</h1>
+  <% if logged_in? %>
+    <a href="/">Home</a>
+    <%= form_tag(session_path(session[:user_id]), method: "delete") do %>
+      <%= submit_tag("logout") %>
+    <% end %>
+  <% else %>
+    <%= link_to("home",'/') %>
+    <%= link_to("register", new_user_path) %>
+    <%= link_to("login", new_session_path) %>
+  <% end %>
 
 <%= yield %>
 

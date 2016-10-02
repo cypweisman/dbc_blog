@@ -20,6 +20,7 @@ class PostsController < ApplicationController
         # format.json {render :show, status: :create}
       else
         #format.html {render :new}
+        @errors = @post.errors.full_messages
         render "new"
       end
     #end
@@ -50,6 +51,7 @@ class PostsController < ApplicationController
   #GET /posts/:id
   def show
     @post = Post.find(params[:id])
+    @creator = @post.creator?(session[:user_id])
   end
 
   #DELETE /posts/:id

@@ -1,14 +1,3 @@
-<% if !logged_in? %>
-  <%= link_to("register", new_user_path) %>
-  <%= link_to("login", new_session_path) %>
-<% end %>
-
-<% if logged_in? %>
-  <%= form_tag(session_path(session[:user_id]), method: "delete") do %>
-  <%= submit_tag("logout") %>
-  <% end %>
-<% end %>
-
 <h1>All Posts</h1>
 
 <% if logged_in? %>

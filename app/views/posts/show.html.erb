@@ -6,8 +6,10 @@
   <h2><%= @post.title %></h2>
   <p><%= @post.body %></p>
 
-  <%= link_to("edit post", edit_user_post_path(@post.user, @post)) %>
+  <% if logged_in? && @creator %>
+    <%= link_to("edit post", edit_user_post_path(@post.user, @post)) %>
 
-  <%= form_tag(user_post_path(@post.user, @post), method: "delete") do %>
-  <%= submit_tag("Delete") %>
+    <%= form_tag(user_post_path(@post.user, @post), method: "delete") do %>
+    <%= submit_tag("Delete") %>
+    <% end %>
   <% end %>
