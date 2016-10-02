@@ -1,0 +1,11 @@
+<h1>All Posts</h1>
+
+<% @posts.each do |post| %>
+  <p><%= post.title %> <a href="<%=post_path(post) %>">details</a></p>
+  <!-- route-prefix_path(dynamic portion) -->
+<% end %>
+
+<a href="<%= new_user_post_path(session[:user_id])%>">create post</a>
+<!-- <a href="<%= new_user_post_path(current_user)%>">create post</a> -->
+
+<%= link_to("create post", new_user_post_path(session[:user_id])) %>
