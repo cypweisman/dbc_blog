@@ -11,7 +11,7 @@ class PostsController < ApplicationController
 
   #POST /post
   def create
-    @post = Post.new(title: params[:title], body: params[:body])
+    @post = Post.new(title: params[:title], body: params[:body], image: params[:image])
     @post.user_id = session[:user_id]
 
     #respond_to do |format|
@@ -34,7 +34,7 @@ class PostsController < ApplicationController
   #PUT /post
   def update
     @post = Post.find(params[:id])
-    @post.assign_attributes(title: params[:title], body: params[:body])
+    @post.assign_attributes(title: params[:title], body: params[:body], image: params[:image])
 
 
     #respond_to do |format|
@@ -59,5 +59,9 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def post_params
+    params.require(:post).permit(:image, :body, :title)
   end
 end

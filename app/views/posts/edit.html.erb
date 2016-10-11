@@ -1,6 +1,10 @@
 <h1>Edit Post</h1>
 
-<%= form_tag(user_post_path, method: "put") do %>
+<%= form_tag(user_post_path, multipart: true, method: "put") do %>
+
+  <%= label_tag(:image, "Image:") %>
+  <%= file_field_tag(:image) %>
+
   <%= label_tag(:title, "Title:") %>
   <%= text_field_tag(:title) %>
 

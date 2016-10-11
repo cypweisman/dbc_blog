@@ -4,7 +4,11 @@
   <%= render '/errors' %>
 <% end %>
 
-<%= form_tag(user_posts_path, method: "post") do %>
+<%= form_tag(user_posts_path, multipart: true, method: "post") do %>
+
+  <%= label_tag(:image, "Image:") %>
+  <%= file_field_tag(:image) %>
+
   <%= label_tag(:title, "Title:") %>
   <%= text_field_tag(:title) %>
 
